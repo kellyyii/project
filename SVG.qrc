@@ -1,0 +1,104 @@
+<RCC>
+  <qresource prefix="SVG">
+    <file>SVG/ cloud, download, storage, server, network.svg</file>
+    <file>SVG/add, create, new, plus, positive.svg</file>
+    <file>SVG/advertising, megaphone, promotion, marketing, bullhorn.svg</file>
+    <file>SVG/at, email, address, contact.svg</file>
+    <file>SVG/attachment, paperclip, attach, office, clip.svg</file>
+    <file>SVG/block, banned, stop, disabled, ban.svg</file>
+    <file>SVG/bluetooth, connection, wireless, device, signal.svg</file>
+    <file>SVG/book, literature, notebook, textbook, guidebook.svg</file>
+    <file>SVG/bookmark, ribbon, save, web, label.svg</file>
+    <file>SVG/briefcase, portfolio, bag, business, suitcase.svg</file>
+    <file>SVG/browser, web, window, website, internet.svg</file>
+    <file>SVG/bug, virus, insect, malware, pest.svg</file>
+    <file>SVG/calendar, schedule, month, date, event.svg</file>
+    <file>SVG/camera, lens, photography, photo, interface.svg</file>
+    <file>SVG/cancel, close, delete, remove, reject.svg</file>
+    <file>SVG/chat, comment, message, talk, speak.svg</file>
+    <file>SVG/checkmark, complete, done, yes, correct.svg</file>
+    <file>SVG/circle chart, graph, pie chart, diagram, graphic.svg</file>
+    <file>SVG/circle chart, graph, pie chart, diagram, graphic_1.svg</file>
+    <file>SVG/clock, time, alarm, watch, hour.svg</file>
+    <file>SVG/cloud computing, network, server, connection, sharing.svg</file>
+    <file>SVG/cloud, storage, data, server, network.svg</file>
+    <file>SVG/cloud, upload, storage, backup, server.svg</file>
+    <file>SVG/code, coding, html, css, programming.svg</file>
+    <file>SVG/computer, screen, display, monitor, desktop.svg</file>
+    <file>SVG/credit card, payment, banking, finance, card.svg</file>
+    <file>SVG/cursor, click, pointer, mouse, select.svg</file>
+    <file>SVG/database, server, storage, data center, hosting.svg</file>
+    <file>SVG/delete, minus, remove, close, negative.svg</file>
+    <file>SVG/dislike, thumbs down, vote, bad, unlike.svg</file>
+    <file>SVG/dollar, currency, money, finance, banking.svg</file>
+    <file>SVG/down, bottom, downward, arrow, navigation.svg</file>
+    <file>SVG/download, arrow, save, downloading, interface.svg</file>
+    <file>SVG/drawer, archive, files, documents, office.svg</file>
+    <file>SVG/earphone, headset, headphone, dj, listen.svg</file>
+    <file>SVG/euro, currency, european, money, finance.svg</file>
+    <file>SVG/exit fullscreen, minimize, shrink, exit, interface.svg</file>
+    <file>SVG/eyedropper, color picker, pipette, dropper, sample.svg</file>
+    <file>SVG/favorite, star, rate, like, bookmark.svg</file>
+    <file>SVG/file, data, document, interface, paper.svg</file>
+    <file>SVG/filter, funnel, sort, sorting, arrange.svg</file>
+    <file>SVG/flag, mark, pin, banner, label.svg</file>
+    <file>SVG/folder, archive, directory, organize, document.svg</file>
+    <file>SVG/friend, group, people, team, members.svg</file>
+    <file>SVG/fullscreen, expand, maximize, full, screen.svg</file>
+    <file>SVG/goal, target, profit, success, business.svg</file>
+    <file>SVG/gps, position, tracking, positioning, navigation.svg</file>
+    <file>SVG/growth, progress, statistics, up, business.svg</file>
+    <file>SVG/hidden, invisible, hide, eye, private.svg</file>
+    <file>SVG/home, menu, house, main menu, interface.svg</file>
+    <file>SVG/idea, light bulb, brainstroming, business idea, creativity.svg</file>
+    <file>SVG/inbox, incoming email, mail, message, mailbox.svg</file>
+    <file>SVG/information, faq, help, info, about.svg</file>
+    <file>SVG/left, arrow, back, previous, navigation.svg</file>
+    <file>SVG/like, thumbs up, vote, favorite, good.svg</file>
+    <file>SVG/location, pin, position, map, navigation.svg</file>
+    <file>SVG/lock, padlock, security, protection, privacy.svg</file>
+    <file>SVG/login, enter, sign in, input, access.svg</file>
+    <file>SVG/logout, close, sign out, exit, access.svg</file>
+    <file>SVG/loss, failure, statistics,ˇbankruptcy, down.svg</file>
+    <file>SVG/mail, envelope, letter, email, newsletter.svg</file>
+    <file>SVG/map, local, location, travel, world.svg</file>
+    <file>SVG/memo, note, message, sticky notes, reminder.svg</file>
+    <file>SVG/menu, more, detail, list, interface.svg</file>
+    <file>SVG/message, bubble, text, sms, chat.svg</file>
+    <file>SVG/money, dollar, cash, finance, payment.svg</file>
+    <file>SVG/move, drag, cursor, pointer, drop, gestures.svg</file>
+    <file>SVG/newspaper, article, headline, journal, news.svg</file>
+    <file>SVG/notification, bell, notify, alert, reminder.svg</file>
+    <file>SVG/paper, article, news, document, journal.svg</file>
+    <file>SVG/pen, edit, pencil, write, stationery.svg</file>
+    <file>SVG/pin, label, marker, pushpin, thumbtack.svg</file>
+    <file>SVG/power, shutdown, switch, on, off.svg</file>
+    <file>SVG/print, paper, printer, offset, printing.svg</file>
+    <file>SVG/question, help, faq, ask, question mark.svg</file>
+    <file>SVG/refresh, reload, repeat, sync, rotate.svg</file>
+    <file>SVG/right, arrow, next, forward, navigation.svg</file>
+    <file>SVG/rss, feed, media, news, blog.svg</file>
+    <file>SVG/search, magnifying glass, find, magnifier, zoom.svg</file>
+    <file>SVG/send, paper plane, sent, interface, message.svg</file>
+    <file>SVG/settings, preferences, options, gear, cog.svg</file>
+    <file>SVG/share, publish, social media, send, network.svg</file>
+    <file>SVG/shield, security, protection, antivirus, insurance.svg</file>
+    <file>SVG/show, view, eye, visible, on.svg</file>
+    <file>SVG/sound recorder, microphone, mic, radio, record.svg</file>
+    <file>SVG/sound, volume, speaker, audio, music.svg</file>
+    <file>SVG/strategy, plan, teamwork, business, management.svg</file>
+    <file>SVG/television, tv, screen, display, technology.svg</file>
+    <file>SVG/trash can, garbage, delete, recycle bin, dustbin.svg</file>
+    <file>SVG/unlock, open, password, lock, key.svg</file>
+    <file>SVG/up, above, top, arrow, navigation.svg</file>
+    <file>SVG/upload, arrow, send, uploading, interface.svg</file>
+    <file>SVG/user, account, profile, avatar, person.svg</file>
+    <file>SVG/video camera, record, movie, camcorder, video.svg</file>
+    <file>SVG/wallet, money, purse, cash, purchase.svg</file>
+    <file>SVG/wifi, wireless, internet, network, signal.svg</file>
+    <file>SVG/world, web, www, internet, global.svg</file>
+    <file>SVG/write, edit, new, pen, draw.svg</file>
+    <file>SVG/zoom in, magnifier, zoom, magnifying glass, enlarge.svg</file>
+    <file>SVG/zoom out, magnifier, zoom. magnifying glass, search.svg</file>
+  </qresource>
+</RCC>
