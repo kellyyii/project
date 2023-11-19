@@ -4,7 +4,7 @@ from PyQt5.QtCore import pyqtSlot, QFile, QTextStream, QPropertyAnimation
 from PyQt5 import QtGui, QtCore
 import pyodbc
 from ui import Ui_MainWindow
-
+#Test Change in Git
 # Setting to connect SQL Server
 driver = "{ODBC Driver 17 for SQL Server}"
 server = "LALALA"
