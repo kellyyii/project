@@ -129,7 +129,8 @@ class MainWindow(QMainWindow):
         conn = pyodbc.connect("DRIVER="+driver+";SERVER="+server+";DATABASE="+database+";UID="+username+";PWD="+password)
         cursor = conn.cursor()
         table_name = "Table_1"
-        sql = f"SELECT * FROM {table_name}"
+        sql = f"SELECT * FROM {table_name} where SID LIKE '%"+mysid+"%'"
+        #sql = f"SELECT * FROM {table_name}"
         cursor.execute(sql)
         rows = cursor.fetchall()
         column_count = len(cursor.description)
