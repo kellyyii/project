@@ -12,6 +12,8 @@ database = "SQL_test"
 username = "sa"
 password = "wl8933SK"
 
+mysid = "This Place Store the SID of logged In Account"
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
