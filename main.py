@@ -4,13 +4,14 @@ from PyQt5.QtCore import pyqtSlot, QFile, QTextStream, QPropertyAnimation
 from PyQt5 import QtGui, QtCore
 import pyodbc
 from ui import Ui_MainWindow
+import time
 #Test Change in Git
 # Setting to connect SQL Server
-driver = "{SQL Server}"
-server = "LAPTOP-AAFSLFVH\MSSQL2022"
-database = "sqltest"
+driver = "{ODBC Driver 17 for SQL Server}"
+server = "223.18.195.32,1433\DESKTOP-AUXISYS\MSSQL2022"
+database = "MainDB"
 username = "sa"
-password = "password"
+password = "psw01"
 
 mysid = "This Place Store the SID of logged In Account"
 mypw = "pw"
@@ -154,13 +155,12 @@ class MainWindow(QMainWindow):
         self.ui.tableWidget.setColumnCount(0)
         # Repopulate the table
         self.populate_table()
-        
-        print("The table is refreshed!")
+        QMessageBox.warning(self, "Updated", "The table is refreshed!")
             
     def add(self):
         conn = pyodbc.connect("DRIVER="+driver+";SERVER="+server+";DATABASE="+database+";UID="+username+";PWD="+password)
         cursor = conn.cursor()
-        sql = "Insert into Table_1 ([Student Name) Values ('')"
+        sql = "Insert into StuRec (SID) Values ('')"
         cursor.execute(sql)
         cursor.commit()
         # Clear the table
@@ -168,7 +168,7 @@ class MainWindow(QMainWindow):
         self.ui.tableWidget.setColumnCount(0)
         # Repopulate the table
         self.populate_table()
-        print("The table is refleshed!")
+        QMessageBox.warning(self, "Updated", "The table is refleshed!")
         
     def update(self):
         # Get the number of rows and columns in the table
@@ -192,18 +192,18 @@ class MainWindow(QMainWindow):
                     values.append(item.text())
                 else:
                     values.append('None')
-            print(values)
+
             # Update the row in the database
             # Assuming the first column is the ID column
-            sql = "UPDATE Table_1 SET " + ", ".join(f"{name} = ?" for name in column_names[1:]) + " WHERE " + column_names[0] + " = ?"
+            sql = "UPDATE StuRec SET " + ", ".join(f"{name} = ?" for name in column_names[1:]) + " WHERE " + column_names[0] + " = ?"
             cursor.execute(sql, *(values[1:] + [values[0]]))
-            sql = "DELETE FROM Table_1 WHERE Name = 'del'"
+            sql = "DELETE FROM StuRec WHERE SID = 'del'"
             cursor.execute(sql)
             cursor.commit()
         
         # Commit the changes and close the connection
         conn.commit()
-        print("Change has been made")
+        QMessageBox.warning(self, "Updated", "Change has been made")
         # conn.close()
         # Clear the table
         self.ui.tableWidget.setRowCount(0)
@@ -211,7 +211,7 @@ class MainWindow(QMainWindow):
         
         # Repopulate the table
         self.populate_table()
-        print("The table is refreshed!")
+        QMessageBox.warning(self, "Updated", "The table is refreshed!")
 
     #teacherslide
     def slideLeftMenu(self):
@@ -252,17 +252,22 @@ class MainWindow(QMainWindow):
     def populate_table(self):
         conn = pyodbc.connect("DRIVER="+driver+";SERVER="+server+";DATABASE="+database+";UID="+username+";PWD="+password)
         cursor = conn.cursor()
-        table_name = "Table_1"
+        table_name = "StuRec"
         #sql = f"SELECT * FROM {table_name} where SID LIKE '%"+mysid+"%'"
         sql = f"SELECT * FROM {table_name}"
         cursor.execute(sql)
         rows = cursor.fetchall()
         column_count = len(cursor.description)
         self.ui.tableWidget.setRowCount(len(rows))
-        self.ui.tableWidget.setColumnCount(column_count)
+        self.ui.tableWidget.setColumnCount(column_count+1)
         
         # Put Label Names to Table
         column_names = [column[0] for column in cursor.description]
+        self.ui.tableWidget.setHorizontalHeaderLabels(column_names)
+
+        # Put Label Names to Table
+        column_names = [column[0] for column in cursor.description]
+        column_names.append("Avg Marks")
         self.ui.tableWidget.setHorizontalHeaderLabels(column_names)
         
         # Input SQL value to Table Cell
@@ -270,8 +275,39 @@ class MainWindow(QMainWindow):
             for j, value in enumerate(row):
                 item = QTableWidgetItem(str(value))
                 self.ui.tableWidget.setItem(i, j, item)
+
+
+         # Cal Avg Marks
+         # Iterate over each row
+        row_count = self.ui.tableWidget.rowCount()
+        for i in range(row_count):
+             # Get the values in the row
+            score = []
+            for j in range(3,column_count):
+                item = self.ui.tableWidget.item(i, j)
+                if item is not None:
+                    score.append(item.text())
+                else:
+                    score.append('None')
+            try:
+                AvgMarks=(float(score[0])+float(score[1]))/2
+                self.ui.tableWidget.setItem(i, column_count, QTableWidgetItem(str(AvgMarks)))
+                self.ui.label.setText("Total="+str(row_count))
+                self.ui.label.adjustSize()
+            except Exception as e:
+                self.ui.tableWidget.setItem(i, column_count, QTableWidgetItem(str("Error")))
+                crash=["Error on line {}".format(sys.exc_info()[-1].tb_lineno),"\n",e]
+                QMessageBox.warning(self, "Something's wrong", "Please refer to the crash_log (This is actually crash-log function)")
+                timeX=str(time.time())
+                with open("crash_log/crashlog-"+timeX+".txt","w") as crashLog:
+                    for i in crash:
+                        i=str(i)
+                        crashLog.write(i)
+
+                
         self.ui.tableWidget.resizeColumnsToContents()
 
+    
     def class_table(self):
         conn = pyodbc.connect("DRIVER="+driver+";SERVER="+server+";DATABASE="+database+";UID="+username+";PWD="+password)
         cursor = conn.cursor()
@@ -293,6 +329,7 @@ class MainWindow(QMainWindow):
                 item = QTableWidgetItem(str(value))
                 self.ui.Class_table.setItem(i, j, item)
         self.ui.Class_table.resizeColumnsToContents()
+    
 
     def year_table(self):
         conn = pyodbc.connect("DRIVER="+driver+";SERVER="+server+";DATABASE="+database+";UID="+username+";PWD="+password)
@@ -325,7 +362,7 @@ class MainWindow(QMainWindow):
         pw = self.ui.input_pw.text()
 
         # Retrieve the SID and password from the database based on the entered username
-        query = "SELECT [Student Name], [Email], [Phone Number], [GPA], [CGPA], SID, pw FROM Table_1 WHERE SID = ? AND pw = ?"
+        query = "SELECT [Student Name], [Email], [Phone Number], [GPA], [CGPA], SID, pw FROM StuRec WHERE SID = ? AND pw = ?"
         cursor.execute(query, (ssid,pw))
         result = cursor.fetchone()
         
@@ -377,7 +414,7 @@ class MainWindow(QMainWindow):
             cursor = conn.cursor()
 
             # Update the password in the database
-            update_query = "UPDATE Table_1 SET pw = ? WHERE SID = ? AND pw = ?"
+            update_query = "UPDATE StuRec SET pw = ? WHERE SID = ? AND pw = ?"
             cursor.execute(update_query, (new_pw, current_sid, current_pw))
             conn.commit()
 
