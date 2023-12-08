@@ -38,7 +38,7 @@ view the record
 
 
 For students:
-Login via student login page
+Login via student login page ( SID / pw )
 Choose the page / function
 
 
