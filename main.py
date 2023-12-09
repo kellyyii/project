@@ -11,7 +11,7 @@ driver = "{ODBC Driver 17 for SQL Server}"
 server = "223.18.195.32,1433\DESKTOP-AUXISYS\MSSQL2022"
 database = "MainDB"
 username = "sa"
-password = "S350F"
+password = ">>>>>>>>>>>>>>>>>>>>>>>>>>>INPUT THE CORUSE CODE IN UPPERCASE (5 DIGITS)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 mysid = "This Place Store the SID of logged In Account"
 mypw = "pw"
