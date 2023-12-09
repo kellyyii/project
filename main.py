@@ -155,12 +155,13 @@ class MainWindow(QMainWindow):
         self.ui.tableWidget.setColumnCount(0)
         # Repopulate the table
         self.populate_table()
-        QMessageBox.warning(self, "Updated", "The table is refreshed!")
+        
+        print("The table is refreshed!")
             
     def add(self):
         conn = pyodbc.connect("DRIVER="+driver+";SERVER="+server+";DATABASE="+database+";UID="+username+";PWD="+password)
         cursor = conn.cursor()
-        sql = "Insert into StuRec (SID) Values ('')"
+        sql = "Insert into StuRec (SID) Values ('Input SID')"
         cursor.execute(sql)
         cursor.commit()
         # Clear the table
@@ -168,7 +169,7 @@ class MainWindow(QMainWindow):
         self.ui.tableWidget.setColumnCount(0)
         # Repopulate the table
         self.populate_table()
-        QMessageBox.warning(self, "Updated", "The table is refleshed!")
+        print("The table is refleshed!")
         
     def update(self):
         # Get the number of rows and columns in the table
@@ -181,6 +182,7 @@ class MainWindow(QMainWindow):
 
         # Get column names
         column_names = [self.ui.tableWidget.horizontalHeaderItem(i).text() for i in range(column_count-1)]
+        print(column_names[1:])
 
         # Iterate over each row
         for i in range(row_count):
@@ -192,18 +194,32 @@ class MainWindow(QMainWindow):
                     values.append(item.text())
                 else:
                     values.append('None')
-
+            print(values)
             # Update the row in the database
             # Assuming the first column is the ID column
-            sql = "UPDATE StuRec SET " + ", ".join(f"{name} = ?" for name in column_names[1:]) + " WHERE " + column_names[0] + " = ?"
-            cursor.execute(sql, *(values[1:] + [values[0]]))
-            sql = "DELETE FROM StuRec WHERE SID = 'del'"
-            cursor.execute(sql)
-            cursor.commit()
+
+            try:
+                sql = "UPDATE StuRec SET " + ", ".join(f"[{name}] = ?" for name in column_names[1:]) + " WHERE [" + column_names[0] + "] = ?"
+                cursor.execute(sql, *(values[1:] + [values[0]]))
+                sql = "DELETE FROM StuRec WHERE SID = 'del'"
+                cursor.execute(sql)
+                cursor.commit()
+            except Exception as e:
+                crash=["Error on line {}".format(sys.exc_info()[-1].tb_lineno),"\n",e]
+                print(crash)
+                timeX=str(time.time())
+                with open("crash_log/crashlog-"+timeX+".txt","w") as crashLog:
+                    for i in crash:
+                        i=str(i)
+                        crashLog.write(i)
+                exit()
+
+
+            
         
         # Commit the changes and close the connection
         conn.commit()
-        QMessageBox.warning(self, "Updated", "Change has been made")
+        print("Change has been made")
         # conn.close()
         # Clear the table
         self.ui.tableWidget.setRowCount(0)
@@ -211,7 +227,7 @@ class MainWindow(QMainWindow):
         
         # Repopulate the table
         self.populate_table()
-        QMessageBox.warning(self, "Updated", "The table is refreshed!")
+        print("The table is refreshed!")
 
     #teacherslide
     def slideLeftMenu(self):
@@ -289,6 +305,7 @@ class MainWindow(QMainWindow):
                     score.append(item.text())
                 else:
                     score.append('None')
+            print(score)
             try:
                 AvgMarks=(float(score[0])+float(score[1]))/2
                 self.ui.tableWidget.setItem(i, column_count, QTableWidgetItem(str(AvgMarks)))
@@ -297,14 +314,14 @@ class MainWindow(QMainWindow):
             except Exception as e:
                 self.ui.tableWidget.setItem(i, column_count, QTableWidgetItem(str("Error")))
                 crash=["Error on line {}".format(sys.exc_info()[-1].tb_lineno),"\n",e]
-                QMessageBox.warning(self, "Something's wrong", "Please refer to the crash_log (This is actually crash-log function)")
+                print(crash)
                 timeX=str(time.time())
                 with open("crash_log/crashlog-"+timeX+".txt","w") as crashLog:
                     for i in crash:
                         i=str(i)
                         crashLog.write(i)
 
-                
+        self.ui.tableWidget.setSortingEnabled(True)          
         self.ui.tableWidget.resizeColumnsToContents()
 
     
@@ -485,3 +502,8 @@ if __name__ == "__main__":
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
+
+
+
+
+
