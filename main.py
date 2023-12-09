@@ -11,7 +11,7 @@ driver = "{ODBC Driver 17 for SQL Server}"
 server = "223.18.195.32,1433\DESKTOP-AUXISYS\MSSQL2022"
 database = "MainDB"
 username = "sa"
-password = "psw01"
+password = "S350F"
 
 mysid = "This Place Store the SID of logged In Account"
 mypw = "pw"
