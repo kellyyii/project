@@ -11,7 +11,7 @@ driver = "{ODBC Driver 17 for SQL Server}"
 server = "223.18.195.32,1433\DESKTOP-AUXISYS\MSSQL2022"
 database = "MainDB"
 username = "sa"
-password = ">>>>>>>>>>>>>>>>>>INPUT OUR COURSE CODE IN UPPDER CASE IN 5 Digit<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+password = "S350F"
 
 mysid = "This Place Store the SID of logged In Account"
 mypw = "pw"
@@ -357,6 +357,7 @@ class MainWindow(QMainWindow):
             for j, value in enumerate(row):
                 item = QTableWidgetItem(str(value))
                 self.ui.Class_table.setItem(i, j, item)
+        self.ui.Class_table.setSortingEnabled(True)    
         self.ui.Class_table.resizeColumnsToContents()
     
 
@@ -380,6 +381,7 @@ class MainWindow(QMainWindow):
             for j, value in enumerate(row):
                 item = QTableWidgetItem(str(value))
                 self.ui.Year_table.setItem(i, j, item)
+        self.ui.Year_table.setSortingEnabled(True)    
         self.ui.Year_table.resizeColumnsToContents()
 
     def login(self):
@@ -514,4 +516,8 @@ if __name__ == "__main__":
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
+
+
+
+
 
