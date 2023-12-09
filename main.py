@@ -99,6 +99,7 @@ class MainWindow(QMainWindow):
         self.ui.Change_bt.clicked.connect(self.change_password)
 
         #load table
+        self.ui.SearchInput.textChanged.connect(self.filter_table)
         self.populate_table()
         self.class_table()
         self.year_table()
@@ -171,6 +172,19 @@ class MainWindow(QMainWindow):
         self.populate_table()
         print("The table is refleshed!")
         
+    def filter_table(self):
+        filter_text = self.ui.SearchInput.text()
+        for row in range(self.ui.tableWidget.rowCount()):
+            should_show = False
+            for column in range(self.ui.tableWidget.columnCount()):
+                item = self.ui.tableWidget.item(row, column)
+                if item is not None:
+                    if filter_text.lower() in item.text().lower():
+                        should_show = True
+                        break
+            
+            self.ui.tableWidget.setRowHidden(row, not should_show)
+
     def update(self):
         # Get the number of rows and columns in the table
         row_count = self.ui.tableWidget.rowCount()
@@ -194,9 +208,7 @@ class MainWindow(QMainWindow):
                     values.append(item.text())
                 else:
                     values.append('None')
-            print(values)
-            # Update the row in the database
-            # Assuming the first column is the ID column
+
 
             try:
                 sql = "UPDATE StuRec SET " + ", ".join(f"[{name}] = ?" for name in column_names[1:]) + " WHERE [" + column_names[0] + "] = ?"
@@ -502,8 +514,4 @@ if __name__ == "__main__":
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
-
-
-
-
 
