@@ -1,3 +1,5 @@
+# © J3FF3oH4NDS0M3 2023. All rights reserved.
+
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'C:\Users\kelly\Desktop\Study\V4.1.QtUI_Function\305ui.ui'
